@@ -6,6 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".DetailsActivity">
 
+    <FrameLayout
+        android:id="@+id/details_frame"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <Button
         android:id="@+id/details_button_enterDetail"
         android:layout_width="match_parent"
@@ -23,7 +32,6 @@
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/details_button_enterDetail"
         tools:listitem="@layout/card_design" />
