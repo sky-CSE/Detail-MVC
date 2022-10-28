@@ -28,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
         address = findViewById(R.id.main_editText_address);
         birthday = findViewById(R.id.main_editText_bday);
         email = findViewById(R.id.main_editText_email);
-
         submit = findViewById(R.id.main_button_submit);
         seeDetais = findViewById(R.id.main_button_seeDetails);
     }
@@ -66,9 +65,7 @@ public class MainActivity extends AppCompatActivity {
 
         seeDetais.setOnClickListener(view -> {
             Intent i = new Intent(MainActivity.this,DetailsActivity.class);
-//            i.putStringArrayListExtra("nameList",nameList);
             startActivity(i);
-//                finish();
         });
     }
 
