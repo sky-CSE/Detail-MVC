@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
     private Button submit, seeDetais;
 
     //database
-    private final HashMap<String,Employee> hashMap = new HashMap<>();
+    public static HashMap<String,Employee> hashMap = new HashMap<>();
     public static ArrayList<String> nameList = new ArrayList<>();
 
     @Override
@@ -28,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
         address = findViewById(R.id.main_editText_address);
         birthday = findViewById(R.id.main_editText_bday);
         email = findViewById(R.id.main_editText_email);
-
         submit = findViewById(R.id.main_button_submit);
         seeDetais = findViewById(R.id.main_button_seeDetails);
     }
@@ -38,16 +37,16 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
 
         submit.setOnClickListener(view -> {
-            if(!nameList.isEmpty() && hashMap.containsKey(name.getText().toString())){
+            if(!hashMap.isEmpty() && hashMap.containsKey(name.getText().toString())){
                 Toast.makeText(MainActivity.this,"Error: Duplicate Name",Toast.LENGTH_LONG).show();
                 return;
             }
 
-            if(check(name) &&
-                    check(phone) &&
-                    check(address) &&
-                    check(birthday) &&
-                    check(email)
+            if(isNotEmpty(name) &&
+                    isNotEmpty(phone) &&
+                    isNotEmpty(address) &&
+                    isNotEmpty(birthday) &&
+                    isNotEmpty(email)
             ){
                 Employee employee = new Employee(name.getText().toString(),
                                                 phone.getText().toString(),
@@ -57,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
                                                 );
 
                 Toast.makeText(getApplicationContext(),"Data saved",Toast.LENGTH_LONG).show();
+
                 nameList.add(employee.getName());
                 hashMap.put(employee.getName(),employee);
             }
@@ -65,20 +65,16 @@ public class MainActivity extends AppCompatActivity {
 
         seeDetais.setOnClickListener(view -> {
             Intent i = new Intent(MainActivity.this,DetailsActivity.class);
-            i.putExtra("hashMap",hashMap);
-            i.putStringArrayListExtra("nameList",nameList);
             startActivity(i);
-//                finish();
         });
     }
 
-    private boolean check(EditText editText){
+    private boolean isNotEmpty(EditText editText){
         if(editText.getText().toString().replaceAll("\\s", "").isEmpty()){
             Toast.makeText(MainActivity.this,editText.getHint() + " cannot be empty",Toast.LENGTH_LONG).show();
             return false;
         }
         return true;
-        //true -- correct state, false-- wrong state
     }
 
 }
