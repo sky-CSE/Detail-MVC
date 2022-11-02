@@ -4,6 +4,7 @@ package com.example.detail_mvc;
 import static com.example.detail_mvc.MainActivity.hashMap;
 import static com.example.detail_mvc.MainActivity.nameList;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -31,6 +32,20 @@ public class DetailsActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        enterDetails.setOnClickListener(view -> finish());
+        enterDetails.setOnClickListener(view -> {
+            goToMainActivity();
+        });
+    }
+
+    private void goToMainActivity() {
+        Intent i = new Intent(this,MainActivity.class);
+        startActivity(i);
+        finish();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        goToMainActivity();
     }
 }
